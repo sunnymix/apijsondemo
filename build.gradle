@@ -1,10 +1,21 @@
+buildscript {
+    ext {
+        // Lombok
+        lombokVersion = '1.18.26'
+        // Mysql
+        mysqlVersion = '8.0.32'
+        // ApiJson
+        apijsonVersion = '6.1.0'
+    }
+}
+
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.15'
+    id 'org.springframework.boot' version '2.7.13'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.example'
+group = 'com.sunnymix'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -12,12 +23,22 @@ java {
 }
 
 repositories {
+    maven { url "https://jitpack.io" }
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    // Lombok
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    // Mysql
+    implementation "mysql:mysql-connector-java:$mysqlVersion"
+    // ApiJson
+    implementation "com.github.Tencent:APIJSON:$apijsonVersion"
+    implementation "com.github.APIJSON:apijson-framework:$apijsonVersion"
+
 }
 
 tasks.named('test') {
